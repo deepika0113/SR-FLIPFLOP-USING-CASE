@@ -37,16 +37,38 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 /* write all the steps invloved */
 
 **PROGRAM**
+~~~
+**PROGRAM**
+module sr_ff (s, r, clk, rst, q);
+  input s, r, clk, rst;
+  output reg q;
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
+  always @(posedge clk or posedge rst)
+ begin
+    if (rst)
+      q <= 0; // Reset the flip-flop
+    else
+ begin
+      case ({s, r}) // S and R control the behavior
+        2'b00: q <= q;    // No change
+        2'b01: q <= 0;    // Reset
+        2'b10: q <= 1;    // Set
+        2'b11: q <= 0;    // Invalid state, typically treated as reset
+      endcase
+    end
+  end
+endmodule
+/* Program for flipflops and verify its truth table in quartus using Verilog programming.
+Developed by:DEEPIKA R
+RegisterNumber:24900617
 */
-![Screenshot 2024-12-08 152936](https://github.com/user-attachments/assets/af538f42-4b26-42c8-a663-6873336d9e11)
+~~~
 
 **RTL LOGIC FOR FLIPFLOPS**
-![Screenshot 2024-12-08 152949](https://github.com/user-attachments/assets/eb28d10d-eee6-4fb9-b95b-f943af60db23)
+![392857581-b4b49a69-d2db-4b32-9126-b61c028d88db](https://github.com/user-attachments/assets/32dc890c-7248-4a4f-a566-fb6985dd7c86)
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
-![Screenshot 2024-12-08 153009](https://github.com/user-attachments/assets/c909a5eb-b206-471b-85bb-efa38c430960)
+![392857753-de6d9e0d-cf49-4f9e-9ded-5216dbef5609](https://github.com/user-attachments/assets/51310790-fc8a-4777-80d3-a693e8f70f1f)
 
-**RESULTS**
- implement  SR flipflop using verilog and validating their functionality using their functional tables is verified successfully
+**RESULTS** 
+Program for SR flipflop was verified in quartus using Verilog programming.
